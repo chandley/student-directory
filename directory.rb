@@ -1,5 +1,5 @@
-require 'generate_list.rb'
 
+student_count = 59
 puts "These are the students in Makers Academy"
 40.times { print '-'}
 puts 
@@ -67,4 +67,4 @@ puts 'Victoria Stepanovna'
 puts 'Yvette Cook'
 puts 'Zeeshan Rasool'
 
-puts 'Overall we have 59 great students'
+puts "Overall we have #{student_count} great students"

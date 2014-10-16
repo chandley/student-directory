@@ -1,5 +1,7 @@
-puts 'The students in my class at Makers Academy are'
-30.times { print '-'}
+require 'generate_list.rb'
+
+puts "These are the students in Makers Academy"
+40.times { print '-'}
 puts 
 
 puts 'Abdul Hassan'
@@ -64,3 +66,5 @@ puts 'Tim Scully'
 puts 'Victoria Stepanovna'
 puts 'Yvette Cook'
 puts 'Zeeshan Rasool'
+
+puts 'Overall we have 59 great students'

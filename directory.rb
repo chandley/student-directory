@@ -71,6 +71,19 @@ student_list.each do |student|
 end
 student_list = temp_array
 
+def input_students
+	puts "Please enter the names of the students"
+	puts "To finish, hit return twice"
+	students = [] #create empty array
+	name = gets.chomp
+	while !name.empty? do
+		students << {:name => name, :month => :october}
+		puts "Now we have #{students.length} students"
+		name = gets.chomp
+	end
+	return students
+end
+
 
 def header
 	puts "These are the students in Makers Academy"
@@ -86,6 +99,7 @@ def show_footer(name_array)
 	puts "Overall we have #{name_array.size} great students"
 end
 
+students = input_students
 header
-show_names(student_list)
-show_footer(student_list)
+show_names(students)
+show_footer(students)

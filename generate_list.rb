@@ -1,6 +1,6 @@
 raw_student_list = []
 
-raw_file = File.new("student_data.txt")
+raw_file = File.new("student_data2.txt")
 while (line = raw_file.gets)
 	line.chomp
 	student = line.split(/\n/)

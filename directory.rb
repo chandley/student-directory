@@ -64,16 +64,20 @@ student_list = [
 'Yvette Cook',
 'Zeeshan Rasool'
 ]
+def header
+	puts "These are the students in Makers Academy"
+	40.times { print '-'}
+	puts	
+end
 
+def show_names(name_array)
+	name_array.each {|student| puts student}
+end
 
+def show_footer(name_array)
+	puts "Overall we have #{name_array.size} great students"
+end
 
-
-
-student_count = student_list.size
-puts "These are the students in Makers Academy"
-40.times { print '-'}
-puts 
-student_list.each {|student| puts student}
-
-
-puts "Overall we have #{student_count} great students"
+header
+show_names(student_list)
+show_footer(student_list)

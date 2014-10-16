@@ -64,6 +64,11 @@ student_list = [
 'Yvette Cook',
 'Zeeshan Rasool'
 ]
+temp_array = []
+student_list.each {|student| temp_array.push [student, :october]}
+student_list = temp_array
+
+
 def header
 	puts "These are the students in Makers Academy"
 	40.times { print '-'}
@@ -71,7 +76,7 @@ def header
 end
 
 def show_names(name_array)
-	name_array.each {|student| puts student}
+	name_array.each {|student, month| print student,"   ", month.to_s; puts}
 end
 
 def show_footer(name_array)

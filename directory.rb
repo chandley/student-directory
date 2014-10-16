@@ -65,7 +65,10 @@ student_list = [
 'Zeeshan Rasool'
 ]
 temp_array = []
-student_list.each {|student| temp_array.push [student, :october]}
+student_list.each do |student| 
+	student_hash = {:name => student, :month => :october} 
+	temp_array.push	student_hash	
+end
 student_list = temp_array
 
 
@@ -76,7 +79,7 @@ def header
 end
 
 def show_names(name_array)
-	name_array.each {|student, month| print student,"   ", month.to_s; puts}
+	name_array.each {|student_hash| print student_hash[:name]," , ", student_hash[:month]; puts}
 end
 
 def show_footer(name_array)

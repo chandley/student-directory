@@ -10,5 +10,5 @@ end
 student_list = raw_student_list.uniq
 
 puts "students are (count  = #{student_list.size}"
-student_list.each do |student| puts "puts '#{student}'" end
+student_list.each do |student| puts "'#{student}'," end
 	

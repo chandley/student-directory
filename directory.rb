@@ -69,7 +69,7 @@ student_list.each do |student|
 	student_hash = {:name => student, :month => :october} 
 	temp_array.push	student_hash	
 end
-student_list = temp_array
+students = temp_array
 
 def input_students
 	puts "Please enter the names of the students"
@@ -92,14 +92,16 @@ def header
 end
 
 def show_names(name_array)
-	name_array.each {|student_hash| print student_hash[:name]," , ", student_hash[:month]; puts}
+	name_array.each_with_index do |student_hash, index| 
+		print (index.to_s + " " + student_hash[:name].rjust(33-index.to_s.size) + " , "+ student_hash[:month].to_s)
+		puts
+	end
 end
-
 def show_footer(name_array)
 	puts "Overall we have #{name_array.size} great students"
 end
 
-students = input_students
+#students = input_students
 header
 show_names(students)
 show_footer(students)

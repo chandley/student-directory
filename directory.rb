@@ -85,7 +85,8 @@ def input_students
 			month = :october # default
 		end
 		students << {:name => name, :month => month}
-		puts "Now we have #{students.length} students"
+		plural = students.length == 1 ? '' : 's'
+		puts "Now we have #{students.length} student#{plural}"
 		input_array = gets.chomp.split(',')
 	end
 	return students

@@ -109,6 +109,26 @@ def show_footer(name_array)
 	puts "Overall we have #{name_array.size} great students"
 end
 
+def interactive_menu
+	loop do
+		puts "1. Input the students"
+		puts "2. Show the students"
+		puts "9. Exit"
+	# 2. read input 
+	  selection = gets.chomp
+
+	  case selection
+	  when '1' # input students
+	  when '2' # show students
+	  when '9' 
+	  	Exit
+	  else
+	  	puts 'I don't know what you mean'
+	  end
+	end
+  # 3. do what user has asked for
+  end
+end
 students = input_students
 header
 show_names(students)

@@ -99,14 +99,14 @@ def header
 	puts	
 end
 
-def show_names(name_array)
-	name_array.each_with_index do |student_hash, index| 
+def show_names
+	@students.each_with_index do |student_hash, index| 
 		print (index.to_s + " " + student_hash[:name].rjust(33-index.to_s.size) + " , "+ student_hash[:month].to_s)
 		puts
 	end
 end
-def show_footer(name_array)
-	puts "Overall we have #{name_array.size} great students"
+def show_footer
+	puts "Overall we have #{@students.size} great students"
 end
 
 def interactive_menu
@@ -118,18 +118,26 @@ def interactive_menu
 	  selection = gets.chomp
 
 	  case selection
-	  when '1' # input students
-	  when '2' # show students
+	  when '1' 
+	  	@students = input_students
+	  	puts @students
+	  when '2' 
+	  	header
+      show_names
+      show_footer
 	  when '9' 
-	  	Exit
+	  	exit
 	  else
-	  	puts 'I don't know what you mean'
+	  	puts "I don't know what you mean"
 	  end
 	end
-  # 3. do what user has asked for
-  end
 end
-students = input_students
-header
-show_names(students)
-show_footer(students)
+
+loop do
+	interactive_menu
+end
+
+
+
+
+

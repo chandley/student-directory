@@ -66,7 +66,7 @@ student_list = [
 ]
 temp_array = []
 student_list.each do |student| 
-	student_hash = {:name => student, :month => :october} 
+	student_hash = {:name => student, :cohort => :october} 
 	temp_array.push	student_hash	
 end
 students = temp_array
@@ -84,7 +84,7 @@ def input_students
 		else
 			month = :october # default
 		end
-		students << {:name => name, :month => month}
+		students << {:name => name, :cohort => month}
 		plural = students.length == 1 ? '' : 's'
 		puts "Now we have #{students.length} student#{plural}"
 		input_array = gets.chomp.split(',')
@@ -101,7 +101,7 @@ end
 
 def show_names
 	@students.each_with_index do |student_hash, index| 
-		print (index.to_s + " " + student_hash[:name].rjust(33-index.to_s.size) + " , "+ student_hash[:month].to_s)
+		print (index.to_s + " " + student_hash[:name].rjust(33-index.to_s.size) + " , "+ student_hash[:cohort].to_s)
 		puts
 	end
 end
@@ -152,8 +152,8 @@ def save_students
 	file = File.open("students.csv","w")
 	#iterate over students
 	@students.each do |student|
-		student_data = [student[:name], student[:cohort]]
-		csv_line =  student_data.join(',')
+		student_data = [student[:name], student[:cohort]] # problem here
+		csv_line =  student_data.join(",")
 		file.puts csv_line
 	end
 	file.close
@@ -163,10 +163,12 @@ def load_students
 	file = File.open("students.csv","r")
 	file.readlines.each do |line|
     name, cohort = line.chomp.split(',')
-    @students << {:name => name, :cohort => cohort.to_sym}
+    @students << { :name => name, :cohort => cohort.to_sym }
 	end
 	file.close
 end
+
+
 
 loop do
 	interactive_menu

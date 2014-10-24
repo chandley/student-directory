@@ -111,26 +111,33 @@ end
 
 def interactive_menu
 	loop do
-		puts "1. Input the students"
-		puts "2. Show the students"
-		puts "9. Exit"
-	# 2. read input 
-	  selection = gets.chomp
+		print_menu
+	  process ( gets.chomp ) # process selection
+	end
+end
 
-	  case selection
+def print_menu
+  puts "1. Input the students"
+  puts "2. Show the students"
+  puts "9. Exit" # 9 because we'll be adding more items  
+end
+def show_students
+	header
+  show_names
+  show_footer
+end
+
+def process (selection)
+		case selection
 	  when '1' 
 	  	@students = input_students
-	  	puts @students
 	  when '2' 
-	  	header
-      show_names
-      show_footer
+	  	show_students
 	  when '9' 
 	  	exit
 	  else
 	  	puts "I don't know what you mean"
 	  end
-	end
 end
 
 loop do

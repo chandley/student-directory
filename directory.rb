@@ -1,76 +1,5 @@
 #setup student array
 
-student_list = [
-'Abdul Hassan',
-'Alan Bridger',
-'alex blease',
-'Alexander Levin',
-'Ana Nogal',
-'Andrew Harrison',
-'Andrew Hercules',
-'Andrew Snead',
-'Anna Jerofejeva',
-'Attila Mirk',
-'Ayo Obembe',
-'Ben Hutchinson',
-'Bernard Mordan',
-'Camilla van Klinken',
-'chris handley',
-'Christopher Batts',
-'Clare Trembath',
-'Claudia B',
-'Colin Smif',
-'Contra Mundi',
-'Craig Horsborough',
-'Dale Stevens',
-#'Dan Le Dosquet-Bergquist',
-'Daniel Cutler',
-'Daniel Le Dosquet - Bergquist',
-'Denise Yu',
-'Edward Byne',
-'Elena Garrone',
-'Ella Schofield',
-#'Enrique Comba Riepenhausen',
-'Evgeny Shadchnev',
-'Fad Fad',
-'Giorgia Amici',
-'Hadi Chalabi',
-'Izzy Markwick',
-'James Carter',
-'JANA SANCHEZ',
-'Jay Dalu-Chandu',
-'John Kiely',
-'Johnny Lakin',
-#'Jordan Maker',
-'Karin Nielsen',
-'Margherita Serino',
-'Ming Chan',
-'Mishal I',
-'Nick Dyer',
-'Nicole Pellicena',
-'Nikesh Ashar',
-#'Owner',
-'Pavel Redics',
-'Rachel Nolan',
-'Rich Lake',
-'Sam Joseph',
-'Sandrine Zhang-Ferron',
-'Sean Stevens',
-'Shan Hasan',
-'Simon Lange',
-'Stephen Giles',
-'Tim Scully',
-'Victoria Stepanovna',
-'Yvette Cook',
-'Zeeshan Rasool'
-]
-temp_array = []
-student_list.each do |student| 
-	student_hash = {:name => student, :cohort => :october} 
-	temp_array.push	student_hash	
-end
-students = temp_array
-
 def input_students
 	puts "Please enter the names , cohorts of the students"
 	puts "To finish, type quit"
@@ -100,6 +29,7 @@ def header
 end
 
 def show_names
+	puts 'no names' unless @students.any? 
 	@students.each_with_index do |student_hash, index| 
 		print (index.to_s + " " + student_hash[:name].rjust(33-index.to_s.size) + " , "+ student_hash[:cohort].to_s)
 		puts
@@ -123,6 +53,7 @@ def print_menu
   puts "4. Load students"
   puts "9. Exit" # 9 because we'll be adding more items  
 end
+
 def show_students
 	header
   show_names
@@ -160,15 +91,16 @@ def save_students
 end
 	
 def load_students
+	@students = []
 	file = File.open("students.csv","r")
 	file.readlines.each do |line|
     name, cohort = line.chomp.split(',')
-    @students << { :name => name, :cohort => cohort.to_sym }
+    puts name
+    puts cohort
+    @students.push ({ :name => name, :cohort => cohort.to_sym })
 	end
 	file.close
 end
-
-
 
 loop do
 	interactive_menu

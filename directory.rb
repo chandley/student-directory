@@ -63,6 +63,7 @@ end
 def process (selection)
 		case selection
 	  when '1' 
+	  	#@students.push input_students
 	  	@students = input_students
 	  when '2' 
 	  	show_students
@@ -90,18 +91,16 @@ def save_students
 	file.close
 end
 	
-def load_students
-	@students = []
-	file = File.open("students.csv","r")
+def load_students(filename = "students.csv")
+	file = File.open(filename,"r")
 	file.readlines.each do |line|
     name, cohort = line.chomp.split(',')
-    puts name
-    puts cohort
     @students.push ({ :name => name, :cohort => cohort.to_sym })
 	end
 	file.close
 end
 
+@students = []
 loop do
 	interactive_menu
 end

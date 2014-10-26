@@ -17,6 +17,14 @@ class School
 	end
 
 	def show_students
+		show_header
+		show_names
+		show_footer
+		puts ''
+	end	
+
+
+	def show_names
 		puts 'no names' unless @students.any? 
 	  @students.each_with_index do |student, index| 
 			print (index.to_s + 
@@ -39,6 +47,25 @@ class School
 	  puts "Overall we have #{@students.size} great students"
   end
 
+  def save_students(filename = 'students.csv')
+		File.open(filename,"w") do |file|
+			@students.each do |student| 
+		    csv_line = [student.name,student.cohort.to_s].join(',')
+				file.puts csv_line
+			end  	
+	  end
+	end
+
+  def load_students(filename = 'students.csv')
+		File.open(filename,"r") do |file|
+			file.readlines.each do |line| 
+				name, cohort = line.chomp.split(',')
+				puts name, cohort
+		    @students << (Student.new(name, cohort) )
+			end  	
+  	end
+  end
+
 end
 
 class Menu 
@@ -57,10 +84,10 @@ class Menu
 end
 
 makers = School.new("Makers academy")
-makers.add_student(Student.new("Mary Poppins"))
-makers.add_student(Student.new("George Best", 'october'))
+makers.load_students('test_data.csv')
 
 makers.show_students
+
 
 my_menu = Menu.new
 my_menu.print
@@ -70,8 +97,8 @@ case my_menu.choose (STDIN.gets)
 		puts "Add code to input students"
 	when "Show students"
 		puts "Add code to show students"
-	else
-		puts "error"
+	when "Load"
+		makers.load_students
+	when "Save"
+		makers.save_students
 	end
-
-		

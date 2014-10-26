@@ -41,8 +41,37 @@ class School
 
 end
 
+class Menu 
+	def initialize (items = ["Input students","Show students","Save","Load","Exit"])
+		@menu = items
+	end
+
+	def print
+		@menu.each_with_index {|label,index| puts "#{index}. #{label}" }
+	end
+
+  def choose (index)
+  	return @menu[index.to_i]
+  end
+  	  
+end
+
 makers = School.new("Makers academy")
 makers.add_student(Student.new("Mary Poppins"))
 makers.add_student(Student.new("George Best", 'october'))
 
 makers.show_students
+
+my_menu = Menu.new
+my_menu.print
+puts "enter choice"
+case my_menu.choose (STDIN.gets)
+	when "Input students"
+		puts "Add code to input students"
+	when "Show students"
+		puts "Add code to show students"
+	else
+		puts "error"
+	end
+
+		

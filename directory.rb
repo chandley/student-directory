@@ -6,7 +6,7 @@ class Student
 end
 
 class School
-	attr_accessor :students, :name
+	attr_accessor :name
 	def initialize (name)
 		@name = name
 		@students = []
@@ -22,7 +22,6 @@ class School
 		show_footer
 		puts ''
 	end	
-
 
 	def show_names
 		puts 'no names' unless @students.any? 
@@ -70,7 +69,7 @@ class School
   	input_array = STDIN.gets.chomp.split(',')
   	until input_array.first.nil? do
 		  input_student = Student.new ( input_array.first )
-		  input_student.cohort = input_array.last.to_sym if input_array.size > 1
+		  input_student.cohort = input_array.last.to_sym if input_array.size > 1 # use default if nothing entered
 		  @students << input_student
 			plural = @students.length == 1 ? '' : 's'
 			puts "Now we have #{@students.length} student#{plural}"
@@ -87,21 +86,21 @@ class Menu
 
 	def print
 		@menu.each_with_index {|label,index| puts "#{index}. #{label}" }
+		puts "Please enter choice"
 	end
 
   def choose (index)
-  	return @menu[index.to_i]
+  	return @menu[index.to_i]	# return text corresponding to choice
   end
   	  
 end
 
 makers = School.new("Makers academy")
+main_menu = Menu.new
 
-loop do
-  my_menu = Menu.new
-	my_menu.print
-	puts "enter choice"
-	  case my_menu.choose (STDIN.gets)
+loop do 
+	main_menu.print
+	  case main_menu.choose (STDIN.gets)
 		when "Input students"
 			makers.add_students
 		when "Show students"

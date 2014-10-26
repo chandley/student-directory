@@ -4,7 +4,7 @@ def input_students
 	puts "Please enter the names , cohorts of the students"
 	puts "To finish, type quit"
 	students = [] #create empty array
-	input_array = gets.chomp.split(',')
+	input_array = STDIN.gets.chomp.split(',')
 
 	until input_array.first.nil? do
 		name = input_array.first
@@ -16,7 +16,7 @@ def input_students
 		students << {:name => name, :cohort => month}
 		plural = students.length == 1 ? '' : 's'
 		puts "Now we have #{students.length} student#{plural}"
-		input_array = gets.chomp.split(',')
+		input_array = STDIN.gets.chomp.split(',')
 	end
 	return students
 end
@@ -42,7 +42,7 @@ end
 def interactive_menu
 	loop do
 		print_menu
-	  process ( gets.chomp ) # process selection
+	  process ( STDIN.gets.chomp ) # process selection
 	end
 end
 
@@ -100,7 +100,19 @@ def load_students(filename = "students.csv")
 	file.close
 end
 
+def try_load_students
+	filename = ARGV.first
+	return if filename.nil? # no filename supplied as arg
+	if File.exists?(filename)
+		load_students(filename)
+	else
+		puts "sorry, #{filename} not found"
+		exit # quit program
+	end
+end
+
 @students = []
+try_load_students
 loop do
 	interactive_menu
 end

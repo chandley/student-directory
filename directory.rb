@@ -60,10 +60,22 @@ class School
 		File.open(filename,"r") do |file|
 			file.readlines.each do |line| 
 				name, cohort = line.chomp.split(',')
-				puts name, cohort
 		    @students << (Student.new(name, cohort) )
 			end  	
   	end
+  end
+
+  def add_students
+  	puts "Please enter names, cohorts of students - empty line to exit"
+  	input_array = STDIN.gets.chomp.split(',')
+  	until input_array.first.nil? do
+		  input_student = Student.new ( input_array.first )
+		  input_student.cohort = input_array.last.to_sym if input_array.size > 1
+		  @students << input_student
+			plural = @students.length == 1 ? '' : 's'
+			puts "Now we have #{@students.length} student#{plural}"
+			input_array = STDIN.gets.chomp.split(',')
+		end
   end
 
 end
@@ -84,21 +96,22 @@ class Menu
 end
 
 makers = School.new("Makers academy")
-makers.load_students('test_data.csv')
 
-makers.show_students
-
-
-my_menu = Menu.new
-my_menu.print
-puts "enter choice"
-case my_menu.choose (STDIN.gets)
-	when "Input students"
-		puts "Add code to input students"
-	when "Show students"
-		puts "Add code to show students"
-	when "Load"
-		makers.load_students
-	when "Save"
-		makers.save_students
+loop do
+  my_menu = Menu.new
+	my_menu.print
+	puts "enter choice"
+	  case my_menu.choose (STDIN.gets)
+		when "Input students"
+			makers.add_students
+		when "Show students"
+			makers.show_students
+		when "Load"
+			makers.load_students
+		when "Save"
+			makers.save_students
+		when "Exit"
+			exit
 	end
+end
+

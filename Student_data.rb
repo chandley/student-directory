@@ -1,3 +1,5 @@
+
+Student_data_raw = %w(
 		Abdul Hassan
 		Abdul Hassan
 		Alan Bridger
@@ -78,3 +80,4 @@
 		Karin Nielsen
 		Karin Nielsen
 		Ian Hutchinson
+		)
